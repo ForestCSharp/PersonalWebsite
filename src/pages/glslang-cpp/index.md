@@ -5,9 +5,9 @@ date: "2018-05-08"
 
 As long as I've been developing with Vulkan, I've wanted an easier way to use GLSL without having to compile to Spir-V using an offline compiler (namely glslangvalidator.exe or glslc.exe). 
 
-The two options I looked at where [glslang](https://github.com/KhronosGroup/glslang) and [shaderc](https://github.com/google/shaderc) (which itself utilizes glslang, among other tools).
+Fortunately, the above tools also provide C/C++ Libraries for doing the same thing: [glslang](https://github.com/KhronosGroup/glslang) and [shaderc](https://github.com/google/shaderc).
 
-I opted to use glslang, as its a relatively lightweight library that I could easily add to my [project](https://github.com/ForestCSharp/VkCppRenderer) as a git submodule. ShaderC was nearly as easy to integrate, but is a much larger library, with the initial compile taking much longer and the resulting binaries fairly large. The compilation process using glslang as a C++ library is based heavily upon how the [StandAlone (glslangvalidator.exe)](https://github.com/KhronosGroup/glslang/blob/master/StandAlone/StandAlone.cpp) compiler's implementation processes GLSL. Below is a walkthrough on how I'm using glslang to preprocess and compile my glsl files to Spir-V. This post moves fairly linearly through "ShaderCompiler.hpp" found in the project linked above.
+I opted to use glslang, as its a relatively lightweight library that I could easily add to my [project](https://github.com/ForestCSharp/VkCppRenderer) as a git submodule. ShaderC was nearly as easy to integrate, but is a much larger library, with the initial compile taking much longer and the resulting binaries fairly large. The compilation process using glslang as a C/C++ library is based heavily upon the [StandAlone (glslangvalidator.exe)](https://github.com/KhronosGroup/glslang/blob/master/StandAlone/StandAlone.cpp) compiler's compiler. Below is a walkthrough on how I'm using glslang to preprocess and compile my GLSL files to Spir-V. This post moves fairly linearly through "ShaderCompiler.hpp" found in the project linked above.
 
 #Includes
 
