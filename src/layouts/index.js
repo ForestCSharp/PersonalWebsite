@@ -2,6 +2,8 @@ import React from 'react'
 import Link from 'gatsby-link'
 
 import { rhythm, scale } from '../utils/typography'
+import { Menu, Button} from 'antd'
+import 'antd/dist/antd.css'
 
 class Template extends React.Component {
   render() {
@@ -13,49 +15,35 @@ class Template extends React.Component {
       rootPath = __PATH_PREFIX__ + `/`
     }
 
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
+
+    header = (
+      <h1
+        style={{
+          ...scale(1.5),
+          marginBottom: rhythm(1.5),
+          marginTop: 0,
+        }}
+      >
+        <Link
           style={{
-            ...scale(1.5),
-            marginBottom: rhythm(1.5),
-            marginTop: 0,
+            boxShadow: 'none',
+            textDecoration: 'none',
+            color: 'inherit',
           }}
+          to={'/'}
         >
-          <Link
-            style={{
-              boxShadow: 'none',
-              textDecoration: 'none',
-              color: 'inherit',
-            }}
-            to={'/'}
-          >
-            Forest Sharp
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: 'Montserrat, sans-serif',
-            marginTop: 0,
-            marginBottom: rhythm(-1),
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: 'none',
-              textDecoration: 'none',
-              color: 'inherit',
-            }}
-            to={'/'}
-          >
-            Home
-          </Link>
-        </h3>
-      )
+          Forest Sharp
+        </Link>
+      </h1>
+    )
+
+    var CurrentPath = window.location.pathname
+    CurrentPath = CurrentPath.replace("/", "")
+    if (CurrentPath.length == 0)
+    {
+      CurrentPath = "Blog"
     }
+
     return (
       <div
         style={{
@@ -66,6 +54,13 @@ class Template extends React.Component {
         }}
       >
         {header}
+        <Menu mode="horizontal" theme ="dark" selectedKeys={[CurrentPath]}>
+          <Menu.Item key="Blog"> <a href="/" rel="noopener noreferrer">Blog</a></Menu.Item>
+          <Menu.Item key="PastWork"> <a href="/PastWork" rel="noopener noreferrer">Past Work</a></Menu.Item>
+          <Menu.Item key="Bio"> <a href="/Bio" rel="noopener noreferrer">Bio</a></Menu.Item>
+          <Menu.Item key="Contact"> <a href="/Contact" rel="noopener noreferrer">Contact</a></Menu.Item>
+        </Menu>
+        <br/>
         {children()}
       </div>
     )

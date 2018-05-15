@@ -9,6 +9,29 @@ Fortunately, the above tools also provide C/C++ Libraries for doing the same thi
 
 I opted to use glslang, as its a relatively lightweight library that I could easily add to my [project](https://github.com/ForestCSharp/VkCppRenderer) as a git submodule. ShaderC was nearly as easy to integrate, but is a much larger library, with the initial compile taking much longer and the resulting binaries fairly large. The compilation process using glslang as a C/C++ library is based heavily upon the [StandAlone (glslangvalidator.exe)](https://github.com/KhronosGroup/glslang/blob/master/StandAlone/StandAlone.cpp) compiler's implementation. Below is a walkthrough on how I'm using glslang to preprocess and compile my GLSL files to Spir-V. This post moves fairly linearly through ["ShaderCompiler.hpp"](https://github.com/ForestCSharp/VkCppRenderer/blob/master/Src/Renderer/GLSL/ShaderCompiler.hpp) found in the project linked above.
 
+#Project Setup
+
+The CMake setup for glslang is super easy. Just add the glslang subdirectory (or locate the library in another way), set up the include directories, and then link with glslang and SpirV
+
+```CMake
+
+#setting a lib directory
+set(LIB_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Libs)
+
+...
+
+#add project as a subdirectory in our project
+add_subdirectory(${LIB_DIRECTORY}/glslang)
+
+#files we'd like to be able to include
+include_directories(${LIB_DIRECTORY}/glslang)
+
+...
+
+#Link With glslang and SPIRV
+target_link_libraries(ScalpelRenderer glslang SPIRV)
+```
+
 #Includes
 
 ```c++
