@@ -37,7 +37,7 @@ class Template extends React.Component {
       </h1>
     )
 
-    var CurrentPath = window.location.pathname
+    var CurrentPath = this.props.location.pathname
     CurrentPath = CurrentPath.replace("/", "")
     if (CurrentPath.length == 0)
     {
