@@ -4,7 +4,7 @@ import Link from 'gatsby-link'
 import { rhythm, scale } from '../utils/typography'
 
 import Menu from 'antd/lib/Menu'
-import 'antd/lib/Menu/style/index.css'
+//import 'antd/lib/Menu/style/index.css'
 
 import '../stylesheets/main.css'
 
