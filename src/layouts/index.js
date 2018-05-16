@@ -3,10 +3,22 @@ import Link from 'gatsby-link'
 
 import { rhythm, scale } from '../utils/typography'
 
-import Menu from 'antd/lib/Menu'
-//import 'antd/lib/Menu/style/index.css'
-
 import '../stylesheets/main.css'
+
+var CommonLinkStyle = {
+  paddingRight: 20,
+  paddingLeft : 20,
+  textDecoration: "none",
+  color: "#333333",
+  padding: "2px 6px 2px 6px",
+  borderRight: "1px solid #CCCCCC",
+  borderLeft: "1px solid #CCCCCC",
+  flex: 1,
+}
+
+var LinkStyle = Object.assign({backgroundColor: "#2288FF"}, CommonLinkStyle)
+
+var CurrentLinkStyle = Object.assign({backgroundColor: "#66CCFF"}, CommonLinkStyle)
 
 class Template extends React.Component {
   render() {
@@ -41,10 +53,10 @@ class Template extends React.Component {
     )
 
     var CurrentPath = this.props.location.pathname
-    CurrentPath = CurrentPath.replace("/", "")
+    //CurrentPath = CurrentPath.replace("/", "")
     if (CurrentPath.length == 0)
     {
-      CurrentPath = "blog"
+      //CurrentPath = "blog"
     }
 
     return (
@@ -57,12 +69,13 @@ class Template extends React.Component {
         }}
       >
         {header}
-        <Menu mode="horizontal" theme ="light" selectedKeys={[CurrentPath]}>
-          <Menu.Item key="blog"> <a href="/" rel="noopener noreferrer">Blog</a></Menu.Item>
-          <Menu.Item key="pastwork"> <a href="/pastwork" rel="noopener noreferrer">Past Work</a></Menu.Item>
-          <Menu.Item key="bio"> <a href="/bio" rel="noopener noreferrer">Bio</a></Menu.Item>
-          <Menu.Item key="contact"> <a href="/contact" rel="noopener noreferrer">Contact</a></Menu.Item>
-        </Menu>
+
+        <div style={{display: "flex", flexDirection: "row"}}>
+          <a href="/" style={CurrentPath == "/" ? CurrentLinkStyle : LinkStyle}> Blog </a>
+          <a href="/pastwork" style={CurrentPath == "/pastwork" ? CurrentLinkStyle : LinkStyle}> Past Work </a>
+          <a href="/bio" style={CurrentPath == "/bio" ? CurrentLinkStyle : LinkStyle}> Bio </a>
+          <a href="/contact" style={CurrentPath == "/contact" ? CurrentLinkStyle : LinkStyle}> Contact </a>
+        </div>
 
         <br/>
         {children()}
