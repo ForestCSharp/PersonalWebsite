@@ -2,8 +2,11 @@ import React from 'react'
 import Link from 'gatsby-link'
 
 import { rhythm, scale } from '../utils/typography'
-import { Menu, Button} from 'antd'
-import 'antd/dist/antd.css'
+
+import Menu from 'antd/lib/Menu'
+import 'antd/lib/Menu/style/index.css'
+
+import '../stylesheets/main.css'
 
 class Template extends React.Component {
   render() {
@@ -14,7 +17,6 @@ class Template extends React.Component {
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
       rootPath = __PATH_PREFIX__ + `/`
     }
-
 
     header = (
       <h1
@@ -34,6 +36,7 @@ class Template extends React.Component {
         >
           Forest Sharp
         </Link>
+        
       </h1>
     )
 
@@ -41,7 +44,7 @@ class Template extends React.Component {
     CurrentPath = CurrentPath.replace("/", "")
     if (CurrentPath.length == 0)
     {
-      CurrentPath = "Blog"
+      CurrentPath = "blog"
     }
 
     return (
@@ -49,17 +52,18 @@ class Template extends React.Component {
         style={{
           marginLeft: 'auto',
           marginRight: 'auto',
-          maxWidth: rhythm(24),
+          maxWidth: rhythm(32),
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
         {header}
-        <Menu mode="horizontal" theme ="dark" selectedKeys={[CurrentPath]}>
-          <Menu.Item key="Blog"> <a href="/" rel="noopener noreferrer">Blog</a></Menu.Item>
-          <Menu.Item key="PastWork"> <a href="/PastWork" rel="noopener noreferrer">Past Work</a></Menu.Item>
-          <Menu.Item key="Bio"> <a href="/Bio" rel="noopener noreferrer">Bio</a></Menu.Item>
-          <Menu.Item key="Contact"> <a href="/Contact" rel="noopener noreferrer">Contact</a></Menu.Item>
+        <Menu mode="horizontal" theme ="light" selectedKeys={[CurrentPath]}>
+          <Menu.Item key="blog"> <a href="/" rel="noopener noreferrer">Blog</a></Menu.Item>
+          <Menu.Item key="pastwork"> <a href="/pastwork" rel="noopener noreferrer">Past Work</a></Menu.Item>
+          <Menu.Item key="bio"> <a href="/bio" rel="noopener noreferrer">Bio</a></Menu.Item>
+          <Menu.Item key="contact"> <a href="/contact" rel="noopener noreferrer">Contact</a></Menu.Item>
         </Menu>
+
         <br/>
         {children()}
       </div>

@@ -125,7 +125,9 @@ class Scene extends Component {
             flex: 4,
             minWidth: 0
         }}
-      />
+      >
+      {this.props.children}
+      </canvas>
       </div>
     )
   }

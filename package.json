@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "antd": "^3.5.2",
+    "babel-plugin-import": "^1.7.0",
     "gatsby": "^1.9.259",
     "gatsby-link": "^1.6.44",
     "gatsby-plugin-catch-links": "^1.0.22",

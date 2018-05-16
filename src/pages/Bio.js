@@ -4,7 +4,7 @@ class Bio extends React.Component {
     render() {
         return (
             <div>
-                <p>Bio Goes Here </p>
+                <p>Bio Goes Here</p>
             </div>
         )
     }
