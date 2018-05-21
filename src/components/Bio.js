@@ -20,7 +20,7 @@ class Bio extends React.Component {
           }}
         >
           <p>
-            Graphics Programmer {' '}
+            Software Engineer {' '}
             <br/>
             <a href="https://github.com/ForestCSharp">
               GitHub
